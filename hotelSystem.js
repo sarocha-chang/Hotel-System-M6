@@ -80,7 +80,7 @@ GetCustomer = (cus_id) => {
     if (cus_detail[i].id === cus_id) {
       console.log("Customer found");
       console.log(cus_detail[i]);
-      return GetCustomer;
+      return cus_detail[i];
     };
   };
   console.log("Customer not found");
@@ -92,7 +92,7 @@ GetRoom = (room_id) => {
     if (room_detail[i].id === room_id) {
       console.log("Room found");
       console.log(room_detail[i]);
-      return GetRoom;
+      return room_detail[i];
     };
   };
   console.log("Room not found");
@@ -130,7 +130,7 @@ GetReservation = (res_id) => {
     if (reservation[i].id === res_id) {
       console.log("Reservation found");
       console.log(reservation[i]);
-      return GetReservation;
+      return reservation[i];
     };
   };
   console.log("Reservation not found");
