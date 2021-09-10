@@ -89,7 +89,7 @@ GetCustomer = (cus_id) => {
 
 GetRoom = (room_id) => {
   for (let i = 0; i < room_detail.length; i++) {
-    if (room_detail[i].room_id === room_id) {
+    if (room_detail[i].id === room_id) {
       console.log("Room found");
       console.log(room_detail[i]);
       return GetRoom;

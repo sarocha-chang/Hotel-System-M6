@@ -17,10 +17,10 @@ http.createServer(function (req, res) {
     var data;
     var status = 200;
     switch (request_path.pathname) {
-        case '/addCustomer':
+        case '/AddCustomer':
             try {
                 data = AddCustomer(parseInt(request_path.query.id), request_path.query.firstName, request_path.query.lastName,parseInt(request_path.query.age), request_path.query.phone);
-                message = 'Customer added successfully';
+                message = `Customer ${request_path.query.firstName} ${request_path.query.lastName} added successfully`;
             } catch (err) {
                 message += err;
                 status = 400;
@@ -28,17 +28,18 @@ http.createServer(function (req, res) {
             }
             break;
 
-        case '/createRoom':
+        case '/CreateRoom':
             try {
                 data = CreateRoom(parseInt(request_path.query.id), parseInt(request_path.query.room_num), request_path.query.room_type,parseInt(request_path.query.room_price), request_path.query.room_status);
-                message = 'Room added successfully';
+                message = `Room ${request_path.query.room_num} added successfully`;
             } catch (err) {
                 message += err;
                 status = 400;
                 console.log(err);
             }
             break;
-        case '/getCustomer':
+
+        case '/GetCustomer':
             try {
                 data = GetCustomer(parseInt(request_path.query.id));
                 message = 'Customer found successfully';
@@ -48,9 +49,10 @@ http.createServer(function (req, res) {
                 console.log(err);
             }
             break;
-        case '/getRoom':
+            
+        case '/GetRoom':
             try {
-                data = GetRoom(parseInt(request_path.query.id));
+                data = GetRoom(parseInt(request_path.query.room_id));
                 message = 'Room found successfully';
             } catch (err) {
                 message += err;
@@ -58,17 +60,18 @@ http.createServer(function (req, res) {
                 console.log(err);
             }
             break;
-        case '/makeReservation':
+
+        case '/MakeReservation':
             try {
-                data = MakeReservation(parseInt(request_path.query.res_id),parseInt(request_path.query.cus_id), parseInt(request_path.query.room_id), request_path.query.dateIn, request_path.query.dateOut);
-                message = 'Reservation made successfully';
+                data = MakeReservation(parseInt(request_path.query.res_id),parseInt(request_path.query.id), parseInt(request_path.query.room_id), request_path.query.dateIn, request_path.query.dateOut);
+                message = `Make reservsation for customer id${request_path.query.id} success`
             } catch (err) {
                 message += err;
                 status = 400;
                 console.log(err);
             }
             break;
-        case '/getReservation':
+        case '/GetReservation':
             try {
                 data = GetReservation(parseInt(request_path.query.res_id));
                 message = 'Reservation found successfully';
@@ -78,7 +81,7 @@ http.createServer(function (req, res) {
                 console.log(err);
             }
             break;
-        case '/deleteReservation':
+        case '/DeleteReservation':
             try {
                 data = DeleteReservation(parseInt(request_path.query.res_id));
                 message = 'Reservation deleted successfully';
